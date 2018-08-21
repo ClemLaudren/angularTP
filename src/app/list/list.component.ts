@@ -1,25 +1,18 @@
 import { Component } from '@angular/core';
+import { ArticleService } from 'src/app/services/article/article.service';
 
 @Component({
     selector: 'app-list',
     templateUrl: './list.component.html'
 })
 export class ListComponent {
-    articles = [
-        {
-            title: 'J\'apprécie les fruits au sirop',
-            content: 'En garde ma grosse tata',
-            comments: [
-                {
-                    username: 'John Wick',
-                    description: 'C\'est la guerre !'
-                }
-            ]
-        },
-        {
-            title: 'Pas changer assiette pour fromage',
-            content: 'Faut mettre du beurre au fond du plat pour pas que le gratin colle',
-            comments: []
-        }
-    ];
+    constructor(private articleService: ArticleService) {
+        console.log("articles OK")
+    }
+
+    articles = [];
+
+    ngOnInit() {
+        this.articles = this.articleService.getArticles();
+    }
 }
