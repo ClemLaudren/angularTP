@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ArticleService {
-    constructor() { }
+    constructor(private http: HttpClient) { }
 
     articles = [
         {
@@ -23,7 +24,7 @@ export class ArticleService {
     ];
 
     getArticles() {
-        return this.articles;
+        return this.http.get('http://localhost:8080/rest/articles');
     }
 
 }

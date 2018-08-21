@@ -10,9 +10,16 @@ export class ListComponent {
         console.log("articles OK")
     }
 
-    articles = [];
+    articles;
 
     ngOnInit() {
-        this.articles = this.articleService.getArticles();
+        this.articleService.getArticles().subscribe(
+        (response) => {
+            console.log(response);
+            this.articles = response;
+        },
+        (error) => {
+            throw new Error('Error with API :' + error);
+        });
     }
 }

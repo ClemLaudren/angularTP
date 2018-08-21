@@ -8,6 +8,8 @@ import { ArticleComponent } from './list/article/article.component';
 import { ArticleService } from './services/article/article.service';
 import { TruncatePipe } from './pipes/TruncatePipe';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,8 @@ import { TruncatePipe } from './pipes/TruncatePipe';
     TruncatePipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [
     ArticleService
