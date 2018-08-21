@@ -1,0 +1,12 @@
+<div class="card" style="width: 286px;">
+    <img class="card-img-top" src="https://dummyimage.com/286x180/3d3d3d/cccccc.jpg" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{ article.title }}</h5>
+        <p class="card-text">{{ article.content }}</p>
+        <div *ngIf="article.comments.length">
+            <div *ngFor="let comment of article.comments">
+                {{ comment.username }}: <p>{{ comment.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
