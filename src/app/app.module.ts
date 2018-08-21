@@ -6,12 +6,14 @@ import { ListComponent } from './list/list.component';
 import { ArticleComponent } from './list/article/article.component';
 
 import { ArticleService } from './services/article/article.service';
+import { TruncatePipe } from './pipes/TruncatePipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
-    ArticleComponent
+    ArticleComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule
