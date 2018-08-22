@@ -3,6 +3,7 @@ import { ArticleService } from 'src/app/services/article/article.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { Router } from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-update-article',
@@ -14,6 +15,9 @@ export class UpdateArticleComponent {
                 private router: Router) {}
 
     article = {};
+
+    titleInput: FormControl;
+    contentInput: FormControl;
 
     ngOnInit() {
         this.route.params.subscribe(
@@ -32,11 +36,11 @@ export class UpdateArticleComponent {
                 throw new Error('Error with params:' + error.toString());
             }
         );
+
     }
 
     updateArticle(form: NgForm) {
-        const articleUpdated = {...this.article, ...form.value}
-        this.articleService.updateArticle(articleUpdated).subscribe(
+        this.articleService.updateArticle(this.article).subscribe(
             (success) => {
                 this.router.navigate(['/articles']);
             }
