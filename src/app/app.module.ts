@@ -15,11 +15,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { RouterModule, Routes } from '@angular/router';
 import { UpdateArticleComponent } from './admin/update-article/updateArticle.component';
+import { AddArticleComponent } from './add-article/add-article.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'articles', component: ListComponent },
+  { path: 'articles/add', component: AddArticleComponent },
   { path: 'articles/:id', component: DetailComponent },
+  { path: 'articles/add/:id', component: AddArticleComponent },
   { path: 'articles/update/:id', component: UpdateArticleComponent }
 ]
 
@@ -31,7 +34,8 @@ const routes: Routes = [
     ListComponent,
     ArticleComponent,
     UpdateArticleComponent,
-    TruncatePipe
+    TruncatePipe,
+    AddArticleComponent
   ],
   imports: [
     BrowserModule,

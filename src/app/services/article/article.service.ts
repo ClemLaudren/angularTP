@@ -16,4 +16,8 @@ export class ArticleService {
         return this.http.put('http://localhost:8080/rest/articles/' + articleUpdated.id, articleUpdated);
     }
 
+    addArticle(newArticle) {
+        return this.http.post('http://localhost:8080/rest/articles', newArticle);
+    }
+
 }
