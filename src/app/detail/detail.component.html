@@ -2,10 +2,12 @@
 
     <h2 class="card-title">{{ article.title }}</h2>
     <p class="card-text">{{ article.content }}</p>
-    <div *ngIf="article.comments.length">
+    <div *ngIf="article.comments && article.comments.length">
         <div *ngFor="let comment of article.comments">
             {{ comment.username }}: <p>{{ comment.content }}</p>
         </div>
     </div>
+
+    <a class="btn btn-primary" [routerLink]="['/articles/update', article.id]">Modifier</a>
 
 </div>

@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailComponent implements OnInit {
     constructor(private articleService: ArticleService, private route: ActivatedRoute) {}
 
-    article;
+    article = {};
 
     ngOnInit() {
         this.route.params.subscribe(
