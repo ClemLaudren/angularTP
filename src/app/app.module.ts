@@ -10,6 +10,12 @@ import { TruncatePipe } from './pipes/TruncatePipe';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  { path: 'articles', component: ListComponent }
+]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
     ArticleService
