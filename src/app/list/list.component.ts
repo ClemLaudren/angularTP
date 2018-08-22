@@ -6,16 +6,13 @@ import { ArticleService } from 'src/app/services/article/article.service';
     templateUrl: './list.component.html'
 })
 export class ListComponent {
-    constructor(private articleService: ArticleService) {
-        console.log("articles OK")
-    }
+    constructor(private articleService: ArticleService) {}
 
     articles;
 
     ngOnInit() {
         this.articleService.getArticles().subscribe(
         (response) => {
-            console.log(response);
             this.articles = response;
         },
         (error) => {

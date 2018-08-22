@@ -7,5 +7,8 @@ export class ArticleService {
     getArticles() {
         return this.http.get('http://localhost:8080/rest/articles');
     }
+    getArticleById(id) {
+        return this.http.get('http://localhost:8080/rest/articles/' + id);
+    }
 
 }
