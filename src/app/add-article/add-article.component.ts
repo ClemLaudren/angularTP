@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../services/category/category.service';
 import {forEach} from '@angular/router/src/utils/collection';
+import {ToastNotifications} from 'ngx-toast-notifications';
 
 @Component({
   selector: 'app-add-article',
@@ -13,7 +14,12 @@ import {forEach} from '@angular/router/src/utils/collection';
 })
 export class AddArticleComponent implements OnInit {
 
-  constructor(private articleService: ArticleService, private categoryService: CategoryService, private router: Router) { }
+  constructor(
+      private articleService: ArticleService,
+      private categoryService: CategoryService,
+      private router: Router,
+      private toasts: ToastNotifications
+  ) { }
 
   article = {
       categories : []
@@ -36,9 +42,10 @@ export class AddArticleComponent implements OnInit {
     this.articleService.addArticle(this.article).subscribe(
       (response) => {
         this.router.navigate(['/articles']);
+          this.toasts.next({text: 'Good Job ! Article was created with success.', type: 'success'});
       },
       (error) => {
-        console.error('Error while creating article: ' + error);
+          this.toasts.next({text: 'Warning ! Error while creating article. ' + error , type: 'danger'});
       }
     );
   }

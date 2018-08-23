@@ -1,3 +1,4 @@
+import {ToastNotifications} from "ngx-toast-notifications";
 import { Input, Component, Output, EventEmitter } from '@angular/core';
 import { ArticleService } from 'src/app/services/article/article.service';
 
@@ -6,19 +7,19 @@ import { ArticleService } from 'src/app/services/article/article.service';
     templateUrl: './article.component.html'
 })
 export class ArticleComponent {
-    constructor(private articleService: ArticleService) {}
-    
+    constructor(private articleService: ArticleService, private toasts: ToastNotifications) {}
+
     @Input() article;
     @Output() deleted = new EventEmitter<string>();
 
     deleteArticle(id) {
         this.articleService.deleteArticle(this.article).subscribe(
             (response) => {
-                console.log('Article deleted with success !!');
                 this.deleted.emit(this.article.id);
+                this.toasts.next({text: 'Good Job ! Article deleted with success.', type: 'success'});
             },
             (error) => {
-                console.log('Error while deleting article.');
+                this.toasts.next({text: 'Warning ! Error while deleting article. ' + error , type: 'danger'});
             }
         );
     }

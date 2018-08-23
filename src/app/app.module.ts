@@ -18,6 +18,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { UpdateArticleComponent } from './admin/update-article/updateArticle.component';
 import { AddArticleComponent } from './add-article/add-article.component';
 
+import {ToastNotificationClientModule, ToastNotificationCoreModule} from 'ngx-toast-notifications';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'articles', component: ListComponent },
@@ -42,7 +45,10 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    ToastNotificationCoreModule.forRoot(),
+    ToastNotificationClientModule,
   ],
   providers: [
     ArticleService,
