@@ -23,52 +23,37 @@
                 {{ comment.content }}
             </div>
         </div>
-
-
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-            Ajouter un commentaire
-        </button>
-
-        <form (submit)="addComment(addComment)" #addComment="ngForm" novalidate class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ajouter un commentaire</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="title">Titre</label>
-                            <input class="form-control form-control-lg"
-                                   [(ngModel)]="comment.username"
-                                   #usernameInput="ngModel"
-                                   name="title" id="title"
-                                   minlength="4"
-                                   maxlength="25"
-                                   placeholder="Titre de l'article"
-                                   required>
-                        </div>
-                        <div class="form-group">
-                            <label for="content">Contenu</label>
-                            <textarea class="form-control form-control-lg"
-                                      name="content"
-                                      [(ngModel)]="comment.content"
-                                      id="content"
-                                      placeholder="Lorem ipsum..."
-                                      rows="5x"> {{ comment.content }} </textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button [disabled]="addComment.invalid" type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-
     </div>
 
-
+    <div class="card w-100">
+        <div class="card-header">
+            <strong>Ajouter un commentaire</strong>
+        </div>
+        <div class="card-body">
+            <form (submit)="addComment(formAddComment)" #formAddComment="ngForm" novalidate class="form" id="addComment">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input [(ngModel)]="comment.username"
+                            #usernameInput="ngModel"
+                            name="username"
+                            id="username"
+                            minlength="4"
+                            maxlength="25"
+                            class="form-control"
+                            placeholder="John Wick">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Commentaire</label>
+                    <textarea class="form-control form-control-lg"
+                                name="content"
+                                [(ngModel)]="comment.content"
+                                id="content"
+                                placeholder="Lorem ipsum..."
+                                rows="5x">
+                    </textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Publish</button>
+            </form>
+        </div>
+    </div>
 </div>

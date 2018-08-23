@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from 'src/app/services/article/article.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms/src/directives/ng_form';
 
 @Component({
     selector: 'app-detail',
     templateUrl: './detail.component.html'
 })
 export class DetailComponent implements OnInit {
-    constructor(private articleService: ArticleService, private route: ActivatedRoute) {}
+    constructor(private articleService: ArticleService,
+        private route: ActivatedRoute,
+        private router: Router
+    ) {}
 
-    article = {};
+    article: any = {};
+    comment: any = {};
 
     ngOnInit() {
         this.route.params.subscribe(
@@ -28,5 +33,16 @@ export class DetailComponent implements OnInit {
                 throw new Error('Error with params:' + error.toString());
             }
         );
+    }
+
+    addComment(form: NgForm) {
+        this.articleService.addComment(this.article.id, this.comment).subscribe(
+            (response) => {
+              this.router.navigate(['/articles']);
+            },
+            (error) => {
+              console.error('Error while creating article: ' + error);
+            }
+          );
     }
 }

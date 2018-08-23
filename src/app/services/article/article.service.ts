@@ -24,4 +24,7 @@ export class ArticleService {
         return this.http.delete('http://localhost:8080/rest/articles/' + article.id, article);
     }
 
+    addComment(id, comment) {
+        return this.http.post('http://localhost:8080/rest/articles/' + id + '/comments', comment);
+    }
 }
