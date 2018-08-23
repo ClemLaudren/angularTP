@@ -19,4 +19,8 @@ export class ListComponent {
             throw new Error('Error with API :' + error);
         });
     }
+
+    onDelete(id) {
+        this.articles = this.articles.filter(article => article.id != id);
+    }
 }

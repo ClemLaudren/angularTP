@@ -8,8 +8,7 @@
                 {{ comment.username }}: <p>{{ comment.content }}</p>
             </div>
         </div>
-        <a class="btn btn-info" [routerLink]="['/articles', article.id]">
-            Info
-        </a>
+        <a class="btn btn-info" [routerLink]="['/articles', article.id]">Info</a>
+        <a (click)="deleteArticle(article.id)" class="btn btn-danger">Supprimer</a>
     </div>
 </div>
