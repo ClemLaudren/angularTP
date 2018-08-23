@@ -3,6 +3,8 @@ import { ArticleService } from 'src/app/services/article/article.service';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { Router } from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {CategoryService} from '../services/category/category.service';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-add-article',
@@ -11,19 +13,28 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class AddArticleComponent implements OnInit {
 
-  constructor(private articleService: ArticleService, private router: Router) { }
+  constructor(private articleService: ArticleService, private categoryService: CategoryService, private router: Router) { }
 
-  article = {};
+  article = {
+      categories : []
+  };
+  categories;
   titleInput: FormControl;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.categoryService.getCategories().subscribe(
+        (response) => {
+          this.categories = response;
+        },
+        (error) => {
+            console.error('Error with get categories: ' + error);
+        }
+    );
+  }
 
   addArticle(form: NgForm) {
-    console.log(form.value['title'])
-    
     this.articleService.addArticle(this.article).subscribe(
       (response) => {
-        console.log('Article created successfuly');
         this.router.navigate(['/articles']);
       },
       (error) => {

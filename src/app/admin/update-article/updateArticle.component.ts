@@ -39,7 +39,7 @@ export class UpdateArticleComponent {
 
     }
 
-    updateArticle(form: NgForm) {
+    updateArticle() {
         this.articleService.updateArticle(this.article).subscribe(
             (success) => {
                 this.router.navigate(['/articles']);

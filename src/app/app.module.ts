@@ -9,6 +9,7 @@ import { ListComponent } from './list/list.component';
 import { ArticleComponent } from './list/article/article.component';
 
 import { ArticleService } from './services/article/article.service';
+import { CategoryService } from './services/category/category.service';
 import { TruncatePipe } from './pipes/TruncatePipe';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -44,7 +45,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [
-    ArticleService
+    ArticleService,
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })
