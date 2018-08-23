@@ -5,11 +5,12 @@
         <p class="card-text">{{ article.content | truncatepipe }}</p>
         <div *ngIf="article.comments.length">
             <div *ngFor="let comment of article.comments">
-                {{ comment.username }}: <p>{{ comment.content }}</p>
+                <span class="comment-username">{{ comment.username }}:</span>
+                <p class="comment-content">{{ comment.content }}</p>
             </div>
         </div>
         <a class="btn btn-info" [routerLink]="['/articles', article.id]">
-            Info
+            Read more
         </a>
     </div>
 </div>

@@ -1,3 +1,6 @@
 <div class="d-flex flex-wrap justify-content-around ">
     <app-article *ngFor="let article of articles; let i = index" [article]="article"></app-article>
 </div>
+<div class="d-flex flex-wrap justify-content-around ">
+    <a class="btn btn-info" [routerLink]="['/articles/new']">Add a new article</a>
+</div>

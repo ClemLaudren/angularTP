@@ -1,15 +1,16 @@
 <form (submit)="updateArticle(updateForm)" #updateForm="ngForm" novalidate>
     <div class="form-group">
         <label for="title">Titre</label>
-        <input class="form-control form-control-lg" #titleInput="ngModel" name="title" id="title" [(ngModel)]="article.title" minlength="4" maxlength="25" required>
+        <input class="form-control form-control-lg" #titleInput="ngModel" name="title" id="title" [(ngModel)]="article.title" minlength="6"
+            maxlength="25" required>
 
-        <span [hidden]="!titleInput.errors?.required">Title is not valid</span>
-        <span [hidden]="!titleInput.errors?.minlength">Title must be at least 4 characters long.</span>
+        <span [hidden]="!titleInput.errors?.required">Invalid title</span>
+        <span [hidden]="!titleInput.errors?.minlength">Title must contain at least 6 characters</span>
 
     </div>
     <div class="form-group">
-        <label for="content">Contenu</label>
+        <label for="content">Content</label>
         <textarea [(ngModel)]="article.content" class="form-control form-control-lg" name="content" id="content" rows="5x"> {{ article.content }} </textarea>
     </div>
-    <button [disabled]="updateForm.invalid" type="submit" class="btn btn-primary">Modifier</button>
+    <button [disabled]="updateForm.invalid" type="submit" class="btn btn-primary">Modify</button>
 </form>

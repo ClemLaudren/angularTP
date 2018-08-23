@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ArticleService {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
     getArticles() {
         return this.http.get('http://localhost:8080/rest/articles');
     }
@@ -14,6 +14,14 @@ export class ArticleService {
 
     updateArticle(articleUpdated) {
         return this.http.put('http://localhost:8080/rest/articles/' + articleUpdated.id, articleUpdated);
+    }
+
+    addArticle(article) {
+        return this.http.post('http://localhost:8080/rest/articles', article);
+    }
+
+    deleteArticle(article) {
+        return this.http.delete('http://localhost:8080/rest/articles/' + article.id);
     }
 
 }
