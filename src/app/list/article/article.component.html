@@ -1,15 +1,11 @@
-<div class="card" style="width: 286px;">
-    <img class="card-img-top" src="https://dummyimage.com/286x180/3d3d3d/cccccc.jpg" alt="Card image cap">
-    <div class="card-body">
-        <h5 class="card-title">{{ article.title }}</h5>
-        <span *ngFor="let category of article.categories" class="badge badge-pill badge-secondary">{{ category.label }}</span>
-        <p class="card-text">{{ article.content | truncatepipe }}</p>
-        <div *ngIf="article.comments.length">
-            <div *ngFor="let comment of article.comments">
-                <strong>{{ comment.username }}:</strong> <p>{{ comment.content }}</p>
-            </div>
+<a [routerLink]="['/articles', article.id]" class="text-body card-article">
+    <div class="card" style="width: 286px;">
+        <img class="card-img-top" src="https://dummyimage.com/286x180/3d3d3d/cccccc.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <span *ngFor="let category of article.categories" class="badge badge-pill badge-secondary mr©-1">{{ category.label }}</span>
+            <p class="card-text">{{ article.content | truncatepipe }}</p>
+
         </div>
-        <a class="btn btn-info" [routerLink]="['/articles', article.id]">Info</a>
-        <a (click)="deleteArticle(article.id)" class="btn btn-danger">Supprimer</a>
     </div>
-</div>
+</a>

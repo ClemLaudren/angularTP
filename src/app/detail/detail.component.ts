@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ArticleService } from 'src/app/services/article/article.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgForm } from '@angular/forms/src/directives/ng_form';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ArticleService} from 'src/app/services/article/article.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NgForm} from '@angular/forms/src/directives/ng_form';
 import {ToastNotifications} from 'ngx-toast-notifications';
 
 @Component({
@@ -10,11 +10,13 @@ import {ToastNotifications} from 'ngx-toast-notifications';
 })
 export class DetailComponent implements OnInit {
     constructor(private articleService: ArticleService,
-        private route: ActivatedRoute,
-        private router: Router,
-        private toasts: ToastNotifications
-    ) {}
+                private route: ActivatedRoute,
+                private router: Router,
+                private toasts: ToastNotifications
+    ) {
+    }
 
+    @Output() deleted = new EventEmitter<string>();
     article: any = {};
     comment: any = {};
 
@@ -23,12 +25,12 @@ export class DetailComponent implements OnInit {
             (params): void => {
                 const id = Number(params.id); // Les paramètres sont toujours des string
                 this.articleService.getArticleById(id).subscribe(
-                (response) => {
-                    this.article = response;
-                },
-                (error) => {
-                    throw new Error('Error with API :' + error.toString());
-                });
+                    (response) => {
+                        this.article = response;
+                    },
+                    (error) => {
+                        throw new Error('Error with API :' + error.toString());
+                    });
             },
             (error) => {
                 throw new Error('Error with params:' + error.toString());
@@ -39,12 +41,25 @@ export class DetailComponent implements OnInit {
     addComment(form: NgForm) {
         this.articleService.addComment(this.article.id, this.comment).subscribe(
             (response) => {
-              this.router.navigate(['/articles']);
-              this.toasts.next({text: 'Good Job ! Comment was created with success.', type: 'primary'});
+                this.router.navigate(['/articles']);
+                this.toasts.next({text: 'Good Job ! Comment was created with success.', type: 'primary'});
             },
             (error) => {
-                this.toasts.next({text: 'Warning ! Error while creating comment. ' + error , type: 'danger'});
+                this.toasts.next({text: 'Warning ! Error while creating comment. ' + error, type: 'danger'});
             }
-          );
+        );
+    }
+
+    deleteArticle(id) {
+        this.articleService.deleteArticle(this.article).subscribe(
+            (response) => {
+                this.deleted.emit(this.article.id);
+                this.router.navigate(['/articles']);
+                this.toasts.next({text: 'Good Job ! Article deleted with success.', type: 'success'});
+            },
+            (error) => {
+                this.toasts.next({text: 'Warning ! Error while deleting article. ' + error, type: 'danger'});
+            }
+        );
     }
 }

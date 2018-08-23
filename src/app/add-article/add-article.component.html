@@ -1,4 +1,4 @@
-<form (submit)="addArticle(addForm)" #addForm="ngForm" novalidate>
+<form class="container mt-4" (submit)="addArticle(addForm)" #addForm="ngForm" novalidate>
     <div class="form-group">
         <label for="exampleFormControlSelect1">Catégorie de l'article</label>
         <select class="form-control" id="exampleFormControlSelect1" name="categories" [(ngModel)]="article.categories" multiple>

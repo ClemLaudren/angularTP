@@ -1,6 +1,16 @@
-<div class="d-flex flex-wrap justify-content-around ">
-    <app-article *ngFor="let article of articles; let i = index"
-        [article]="article"
-        (deleted)="onDelete($event)">
-    </app-article>
+<div class="container ">
+
+    <div class="w-100 mt-3 mb-3 d-flex justify-content-center">
+        <h2>Liste des articles</h2>
+    </div>
+
+
+
+    <div class="d-flex flex-wrap justify-content-around">
+        <app-article *ngFor="let article of articles; let i = index"
+                     [article]="article"
+                     (deleted)="onDelete($event)">
+        </app-article>
+    </div>
+
 </div>
