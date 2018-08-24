@@ -167,14 +167,15 @@ export class SearchComponent implements OnInit {
       distinctUntilChanged(),
       switchMap((query) => this.searchService.search(query))
       )
-      .subscribe(result => {
-        console.log(result.map(a => a.title))
-        // if (result.status === 400) {
-        //   return;
-        // } else {
-        //   this.results = result.json().article.title;
-        // }
-      });
+      // .subscribe(
+      // (response) => {
+      // this.results = response;
+      // });
+      .subscribe((response) => { results = response; });
+    // .subscribe(results => {
+    //   console.log(results)
+    //   this.results;
+    // });
   }
 
 }
