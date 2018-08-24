@@ -171,7 +171,11 @@ export class SearchComponent implements OnInit {
       // (response) => {
       // this.results = response;
       // });
-      .subscribe((response) => { results = response; });
+      .subscribe((response) => {
+        console.log(response)
+        this.results = response;
+        // results = response;
+      });
     // .subscribe(results => {
     //   console.log(results)
     //   this.results;
