@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from 'src/app/services/article/article.service';
+import { CategoryService } from 'src/app/services/category/category.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
@@ -42,16 +43,21 @@ import { Router } from '@angular/router';
             max-width: 20%;
             margin-left: 20%;
         }
+        .btn-danger {
+            background-color: #6b0000;
+        }
     `]
 })
 export class DetailComponent implements OnInit {
     constructor(
         private articleService: ArticleService,
+        private categoryService: CategoryService,
         private route: ActivatedRoute,
         private router: Router,
     ) { }
 
     article = {};
+    category = {};
 
     ngOnInit() {
         this.route.params.subscribe(
@@ -61,6 +67,14 @@ export class DetailComponent implements OnInit {
                     (response) => {
                         console.log(response);
                         this.article = response;
+                    },
+                    (error) => {
+                        throw new Error('Error with API :' + error.toString());
+                    });
+                this.categoryService.getCategoryById(id).subscribe(
+                    (response) => {
+                        console.log(response);
+                        this.category = response;
                     },
                     (error) => {
                         throw new Error('Error with API :' + error.toString());

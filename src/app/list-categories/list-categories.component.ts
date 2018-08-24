@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ArticleService } from 'src/app/services/article/article.service';
+import { CategoryService } from 'src/app/services/category/category.service';
 
 @Component({
-    selector: 'app-list',
-    templateUrl: './list.component.html',
+    selector: 'app-list-categories',
+    templateUrl: './list-categories.component.html',
     styles: [`
         .btn-add-article {
             background-color: #0099cc;
@@ -12,21 +12,21 @@ import { ArticleService } from 'src/app/services/article/article.service';
         }
     `]
 })
-export class ListComponent {
+export class ListCategoriesComponent {
     constructor(
-        private articleService: ArticleService,
+        private categoryService: CategoryService
     ) { }
 
-    articles;
+    categories;
 
     ngOnInit() {
-        this.articleService.getArticles().subscribe(
+
+        this.categoryService.getCategories().subscribe(
             (response) => {
-                this.articles = response;
+                this.categories = response;
             },
             (error) => {
                 throw new Error('Error with API :' + error);
             });
-
     }
 }

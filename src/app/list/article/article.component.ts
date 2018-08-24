@@ -4,6 +4,9 @@ import { Input, Component } from '@angular/core';
     selector: 'app-article',
     templateUrl: './article.component.html',
     styles: [`
+        .card {
+            margin-bottom: 40px;
+        }
         .card-title {
             color: #459696;
         }
@@ -16,7 +19,7 @@ import { Input, Component } from '@angular/core';
             font-style: italic;
             font-size: 12px;
         }
-        .btn {
+        .btn-info {
             background-color: #459696;
             text-align: center;
         }

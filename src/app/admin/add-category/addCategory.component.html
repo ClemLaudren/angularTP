@@ -1,0 +1,12 @@
+<form (submit)="addCategory(createForm)" #createForm="ngForm" novalidate>
+    <div class="form-group">
+        <label for="title">Category</label>
+        <input class="form-control form-control-lg" #titleInput="ngModel" name="title" id="title" [(ngModel)]="category.title" minlength="4"
+            maxlength="25" required>
+
+        <span [hidden]="!titleInput.errors?.required">Invalid category name</span>
+        <span [hidden]="!titleInput.errors?.minlength">A category must contain at least 4 characters</span>
+
+    </div>
+    <button [disabled]="createForm.invalid" type="submit" class="btn btn-primary">Add this new category</button>
+</form>

@@ -7,8 +7,11 @@ import { HomeComponent } from './home/home.component';
 import { DetailComponent } from './detail/detail.component';
 import { ListComponent } from './list/list.component';
 import { ArticleComponent } from './list/article/article.component';
+import { ListCategoriesComponent } from './list-categories/list-categories.component';
+import { CategoryComponent } from './list-categories/category/category.component';
 
 import { ArticleService } from './services/article/article.service';
+import { CategoryService } from './services/category/category.service';
 import { TruncatePipe } from './pipes/TruncatePipe';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -16,13 +19,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { UpdateArticleComponent } from './admin/update-article/updateArticle.component';
 import { AddArticleComponent } from './admin/add-article/addArticle.component';
+import { AddCategoryComponent } from './admin/add-category/addCategory.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'articles', component: ListComponent },
   { path: 'articles/new', component: AddArticleComponent },
   { path: 'articles/:id', component: DetailComponent },
-  { path: 'articles/update/:id', component: UpdateArticleComponent }
+  { path: 'articles/update/:id', component: UpdateArticleComponent },
+  { path: 'categories', component: ListCategoriesComponent },
+  { path: 'categories/new', component: AddCategoryComponent }
 ]
 
 @NgModule({
@@ -33,6 +39,9 @@ const routes: Routes = [
     ListComponent,
     AddArticleComponent,
     ArticleComponent,
+    ListCategoriesComponent,
+    CategoryComponent,
+    AddCategoryComponent,
     UpdateArticleComponent,
     TruncatePipe
   ],
@@ -43,8 +52,10 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [
-    ArticleService
+    ArticleService,
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
