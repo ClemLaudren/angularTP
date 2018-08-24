@@ -2,7 +2,13 @@
     <h2 class="card-title">{{ article.title }}</h2>
     <p class="card-text">{{ article.content }}</p>
     <a class="btn btn-primary" [routerLink]="['/articles/update', article.id]">Modify</a>
-    <button class="btn btn-danger" (click)="deleteArticle()">Delete</button>
+
+    <!-- <button class="btn btn-danger" (click)="deleteArticle()">Delete</button> -->
+    <button class="btn btn-danger" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="left"
+        (confirm)="deleteArticle()" (cancel)="cancelClicked = true">
+        Delete article
+    </button>
+
     <div class="comments" *ngIf="article.comments && article.comments.length">
         <div *ngFor="let comment of article.comments">
             <span class="comment-username">{{ comment.username }}:</span>

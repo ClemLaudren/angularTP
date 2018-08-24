@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -49,6 +50,9 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger' // set defaults here
+    }),
     RouterModule.forRoot(routes)
   ],
   providers: [

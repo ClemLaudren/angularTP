@@ -27,6 +27,5 @@ export class ListComponent {
             (error) => {
                 throw new Error('Error with API :' + error);
             });
-
     }
 }

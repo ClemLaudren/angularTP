@@ -56,6 +56,11 @@ export class DetailComponent implements OnInit {
         private router: Router,
     ) { }
 
+    public popoverTitle: string = 'Popover title';
+    public popoverMessage: string = 'Popover description';
+    public confirmClicked: boolean = false;
+    public cancelClicked: boolean = false;
+
     article = {};
     category = {};
 
