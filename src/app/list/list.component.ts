@@ -10,6 +10,9 @@ import { ArticleService } from 'src/app/services/article/article.service';
             color: #FFF;
             margin: 60px 0;
         }
+        .searchbar{
+            margin-bottom: 100px;
+        }
     `]
 })
 export class ListComponent {

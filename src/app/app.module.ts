@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 import { AppComponent } from './app.component';
@@ -10,9 +11,11 @@ import { ListComponent } from './list/list.component';
 import { ArticleComponent } from './list/article/article.component';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
 import { CategoryComponent } from './list-categories/category/category.component';
+import { SearchComponent } from './search/search.component';
 
 import { ArticleService } from './services/article/article.service';
 import { CategoryService } from './services/category/category.service';
+import { SearchService } from './services/search/search.service';
 import { TruncatePipe } from './pipes/TruncatePipe';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -44,12 +47,14 @@ const routes: Routes = [
     CategoryComponent,
     AddCategoryComponent,
     UpdateArticleComponent,
+    SearchComponent,
     TruncatePipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' // set defaults here
     }),
@@ -57,7 +62,8 @@ const routes: Routes = [
   ],
   providers: [
     ArticleService,
-    CategoryService
+    CategoryService,
+    SearchService
   ],
   bootstrap: [AppComponent]
 })
